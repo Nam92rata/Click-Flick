@@ -1,6 +1,7 @@
 const initialState = {
     isLoggedIn: false,
-    authError: ""
+    authError: "",
+    
     
   }
 export default function (state = initialState, action) {
@@ -19,7 +20,7 @@ export default function (state = initialState, action) {
             return{
                 authError: action.payload
             }
-            
+        
         default:
             return state;
     }

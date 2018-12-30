@@ -9,6 +9,7 @@ import WelcomePage from './../components/welcome';
 import HomePage from './homepage';
 import ProfilePage from './profilepage';
 
+
 class Home extends Component {
     handleLogout = () => {
        this.props.logoutUser() 
@@ -44,6 +45,8 @@ class Home extends Component {
                         <Route path="/" exact strict component = {WelcomePage}/>
                         <Route path="/home" exact strict component = {HomePage}/>
                         <Route path="/profile" exact strict component = {ProfilePage}/>
+                        
+
                         
                     </div>
                 </div>                 

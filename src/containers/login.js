@@ -3,7 +3,9 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { loginUser } from './../actions/action-login';
 import { auth } from './../actions/action-auth';
+import { activeUser } from './../actions/action-active';
 var errmsg = "";
+var userActive="";
 class LoginPage extends Component {
     
     validateUser = () => {
@@ -11,7 +13,7 @@ class LoginPage extends Component {
         this.props.users.map((user) => {            
             if (user.first === this.name.value){
                 flag = true;
-                             
+                userActive=user;                            
             }            
         })
         return flag;
@@ -19,7 +21,8 @@ class LoginPage extends Component {
     handleSubmit = () =>{  
         
         if(this.validateUser()){
-            this.props.loginUser();
+            this.props.loginUser();            
+            this.props.activeUser( userActive);            
             return;
         }
         else{            
@@ -67,11 +70,13 @@ class LoginPage extends Component {
 function mapStateToProps(state) {
     return {
         user: state.loginReducer,
-        users: state.userReducer   }     
+        users: state.userReducer ,
+        active : state.activeReducer
+    }     
     
 }
 function matchDispatchToProps(dispatch){
-    return bindActionCreators({loginUser: loginUser, auth: auth}, dispatch);
+    return bindActionCreators({loginUser: loginUser, auth: auth, activeUser: activeUser}, dispatch);
 }
 
 export default connect(mapStateToProps,matchDispatchToProps)(LoginPage);
